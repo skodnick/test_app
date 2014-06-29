@@ -9,7 +9,7 @@ This is the 'TEST APP', dead simple client for SponsorPay API.
 ## Installation
 
 ```sh
-$ git clone 
+$ git clone https://github.com/skodnick/test_app.git
 $ cd /path/to/test_app
 $ bundle install
 ```
