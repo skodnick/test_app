@@ -28,7 +28,7 @@ module Remote::SponsorPay
         signature = Digest::SHA1.hexdigest("#{response.body}#{api_key}")
         if response.headers['X-Sponsorpay-Response-Signature'] == signature
           if parsed_body = response.decode_json
-            offers = parsed_body[:offers].map { |hash| Presenters::SponsorPay::Offer.new(hash) }
+            offers = Array(parsed_body[:offers]).map { |hash| Presenters::SponsorPay::Offer.new(hash) }
             answer.slice(:response_time).merge(offers: offers)
           else
             { error: 'Malformed response body' }
