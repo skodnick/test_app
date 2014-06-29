@@ -1,0 +1,24 @@
+
+<h1><%= link_to 'Offers', offers_path %></h1>
+
+<%= form_tag offers_path, method: :get do %>
+  <%= label_tag(:uid,  'uid:')  %> <%= text_field_tag('query[uid]',  params[:query].try(:[], 'uid'))  %>
+  <%= label_tag(:pub0, 'pub0:') %> <%= text_field_tag('query[pub0]', params[:query].try(:[], 'pub0')) %>
+  <%= label_tag(:page, 'page:') %> <%= text_field_tag('query[page]', params[:query].try(:[], 'page')) %>
+
+  <%= submit_tag('Fetch offers') %>
+<% end %>
+
+<br><hr>
+
+<% if params[:query].present? %>
+  <% if @errors.present? %>
+    <div class='error'>
+      Got the following errors: <br> <%= raw @errors.join('<br/>') %>
+    </div>
+  <% else %>
+    <%= render partial: 'response_time' %> <br>
+
+    <%= render partial: 'offers', locals: { offers: @offers } %>
+  <% end %>
+<% end %>

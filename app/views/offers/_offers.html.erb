@@ -1,0 +1,20 @@
+<% if offers.present? %>
+  <div class='offers-table'>
+    <div class='offer heading'>
+      <div class='title col'>Offer Title</div>
+      <div class='payout col'>Offer Payout</div>
+      <div class='thumbnail col'>Offer Thumbnail</div>
+    </div>
+
+    <% offers.each do |offer| %>
+      <div class='offer row'>
+        <div class='title col'><%= offer.title %></div>
+        <div class='payout col'><%= offer.payout %></div>
+        <div class='thumbnail col'><%= image_tag(offer.thumbnail_low) %></div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class='no_offers info'>No offers</div>
+<% end %>
